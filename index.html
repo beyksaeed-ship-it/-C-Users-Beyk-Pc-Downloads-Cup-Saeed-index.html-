@@ -1,0 +1,488 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WE2002 Cup Manager — awards v8</title><style>
+:root{--bg:#07111f;--panel:#101c2d;--panel2:#15253a;--line:#2a405c;--text:#f8fafc;--muted:#aab8c9;--blue:#38bdf8;--green:#34d399;--gold:#fbbf24;--red:#fb7185;--shadow:0 14px 40px rgba(0,0,0,.25)}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:radial-gradient(circle at top,#17304d 0,#07111f 55%,#040910 100%);color:var(--text);font-family:Tahoma,"Segoe UI",sans-serif;min-height:100%}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:1400px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px}.brand h1{margin:0;font-size:24px}.brand p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.9;max-width:850px}.actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 12px;border-radius:10px}.btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:#075985;border-color:#0284c7}.green{background:#14532d;border-color:#22c55e}.gold{background:#78350f;border-color:#f59e0b}.red{background:#7f1d1d;border-color:#ef4444}.tabs{display:flex;gap:7px;overflow:auto;padding-bottom:10px}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:#d6e1ee;padding:9px 13px;border-radius:10px}.tab.active{background:#082f49;border-color:#0284c7;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.s12{grid-column:span 12}.s8{grid-column:span 8}.s6{grid-column:span 6}.s4{grid-column:span 4}.s3{grid-column:span 3}
+.card{background:rgba(16,28,45,.95);border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:var(--shadow)}.title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.title h2{font-size:16px;margin:0}.muted{color:var(--muted)}.small{font-size:11px}.kpi{font-size:28px;font-weight:800}.goldText{color:var(--gold)}.greenText{color:var(--green)}.blueText{color:var(--blue)}.danger{color:var(--red)}.tag{display:inline-block;border:1px solid var(--line);background:#0b1523;padding:3px 7px;border-radius:999px;font-size:10px;color:#d5dfeb}.notice,.warn{border-radius:11px;padding:10px 12px;font-size:12px;line-height:1.9}.notice{background:#082f49;border:1px solid #075985;color:#bae6fd}.warn{background:#451a03;border:1px solid #92400e;color:#fde68a}.success{background:#052e1a;border:1px solid #15803d;color:#bbf7d0}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}.tableWrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}.table th{background:#0c1727;color:#cbd5e1;position:sticky;top:0}.search{width:100%;background:#08111f;color:#fff;border:1px solid var(--line);border-radius:9px;padding:9px;outline:none}.form{display:grid;grid-template-columns:repeat(12,1fr);gap:9px}.f12{grid-column:span 12}.f8{grid-column:span 8}.f6{grid-column:span 6}.f4{grid-column:span 4}.f3{grid-column:span 3}.field label{display:block;color:#d3ddea;font-size:11px;margin-bottom:4px}.field input,.field select,.field textarea{width:100%;background:#08111f;color:#fff;border:1px solid var(--line);border-radius:9px;padding:8px;outline:none}.field textarea{min-height:150px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#0284c7}.statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.mini{background:#08111f;border:1px solid var(--line);border-radius:10px;padding:10px}.mini b{display:block;margin-bottom:5px;font-size:11px}.statValue{font-size:20px;font-weight:800}.bar{height:7px;background:#0a1422;border:1px solid #1c3047;border-radius:999px;overflow:hidden;margin-top:6px}.bar>span{display:block;height:100%;background:#38bdf8}.playerCard{display:grid;grid-template-columns:1.6fr repeat(4,.85fr) auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.rowline{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px dashed #20344b;font-size:11px}.rowline:last-child{border-bottom:0}.awardGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.award{background:#0b1523;border:1px solid var(--line);border-radius:11px;padding:10px}.award h3{font-size:12px;margin:0 0 5px}.money{font-weight:800;color:var(--gold)}.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.listBox{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:11px;padding:8px;background:#08111f}.listItem{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:8px}.listItem:last-child{border-bottom:0}.historyItem{border:1px solid var(--line);background:#0b1523;border-radius:11px;padding:10px;margin-bottom:8px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}.modal.open{display:flex}.modalbox{width:min(1050px,100%);max-height:94vh;overflow:auto;background:#101c2d;border:1px solid var(--line);border-radius:16px;padding:15px}.toast{position:fixed;left:15px;bottom:15px;background:#101c2d;border:1px solid var(--line);padding:11px 14px;border-radius:10px;display:none;z-index:70}.toast.show{display:block}.footer{text-align:center;color:var(--muted);font-size:10px;line-height:1.8;margin-top:15px}.profileBadge{font-size:11px;color:#dbeafe}.nowrap{white-space:nowrap}
+@media(max-width:1050px){.s8,.s6,.s4,.s3{grid-column:span 12}.playerCard{grid-template-columns:1.5fr 1fr 1fr 1fr auto}.awardGrid,.statGrid{grid-template-columns:repeat(2,1fr)}.top{flex-direction:column}.actions{justify-content:flex-start}.split{grid-template-columns:1fr}}
+@media(max-width:650px){.f8,.f6,.f4,.f3{grid-column:span 12}.awardGrid,.statGrid{grid-template-columns:1fr}.playerCard{grid-template-columns:1fr 1fr}.playerCard>div:last-child{grid-column:1/-1}}
+</style></head><body><div class="app"><header class="top"><div class="brand"><h1>WE2002 CUP MANAGER</h1><p>مدیریت کامل مسابقات دوستانه برای Winning Eleven 2002 / PS1؛ بازیکنان خودمان و بازار کاملاً جدا، ویرایش ۱۶ استیت، سکه، خرید، جوایز، رشد، نسخه‌های جداگانه و قرعه‌کشی انتخاب تیم.</p><div class="profileBadge">نسخه فعال: <b id="profileNameTop"></b></div></div><div class="actions"><button class="btn primary" data-act="add-owned">+ بازیکن خودمان</button><button class="btn green" data-act="add-market">+ بازیکن بازار</button><button class="btn gold" data-act="add-match">+ ثبت بازی</button><button class="btn" data-act="export">پشتیبان</button></div></header><div id="tabs" class="tabs"></div><main id="content"></main><div class="footer">اطلاعات در حافظه مرورگر ذخیره می‌شود. برای مسابقات حساس، JSON پشتیبان بگیر. خرید از بازار فقط یک کپی مستقل را به انتهای لیست «بازیکنان خودمان» اضافه می‌کند.</div></div><div id="modal" class="modal"><div id="modalbox" class="modalbox"></div></div><div id="toast" class="toast"></div><script>
+const STORAGE_KEY='we2002_cup_manager_v4';
+const LEGACY_KEY='we2002_cup_manager_v1';
+
+const STAT_DEFS=[
+ {key:'offense',en:'OFFENSE',fa:'حمله'},
+ {key:'defense',en:'DEFENSE',fa:'دفاع'},
+ {key:'header',en:'HEADER',fa:'سرزنی'},
+ {key:'dribble',en:'DRIBBLE',fa:'دریبل'},
+ {key:'pass',en:'PASS',fa:'پاس'},
+ {key:'shotAcc',en:'SHOOT ACCURACY',fa:'دقت شوت'},
+ {key:'curve',en:'CURVE',fa:'کات / پیچش'},
+ {key:'technique',en:'TECHNIQUE',fa:'تکنیک'},
+ {key:'response',en:'RESPONSE',fa:'واکنش'},
+ {key:'acceleration',en:'ACCELERATION',fa:'شتاب'},
+ {key:'speed',en:'SPEED',fa:'سرعت'},
+ {key:'body',en:'BODY BALANCE',fa:'تعادل بدنی'},
+ {key:'stamina',en:'STAMINA',fa:'استقامت'},
+ {key:'shotPower',en:'SHOOT POWER',fa:'قدرت شوت'},
+ {key:'jump',en:'JUMP',fa:'پرش'},
+ {key:'aggressive',en:'AGGRESSIVE',fa:'تهاجمی'}
+];
+
+const DEFAULT_RULES={
+ pot:100000,
+ coinWin:25,coinWinComputer:25,coinDraw:10,coinLoss:0,coinChampion:50,
+ prizes:[
+  {key:'champion',name:'قهرمان',amount:30000},
+  {key:'goldenBoot',name:'آقای گل',amount:15000},
+  {key:'assists',name:'پاس گل',amount:10000},
+  {key:'wins',name:'برد بیشتر',amount:10000},
+  {key:'outside',name:'پشت هجده',amount:10000},
+  {key:'freeKick',name:'ایستگاهی',amount:5000},
+  {key:'headers',name:'هد',amount:5000},
+  {key:'dribbles',name:'دریبل',amount:5000},
+  {key:'growth',name:'بیشترین رشد',amount:10000}
+ ],
+ thresholds:{dribble:1,header:2,assist:5,outside:5,freeKick:1,goalShot:5,goalAccel:5,goalSpeed:10}
+};
+
+const AWARD_OPTIONS=[
+ {key:'goldenBoot',name:'آقای گل',metric:'goals',desc:'مجموع گل‌های زده در تمام بازی‌های ثبت‌شده'},
+ {key:'assists',name:'پاس گل',metric:'assists',desc:'مجموع پاس گل در تمام بازی‌ها'},
+ {key:'mostGoals',name:'بیشترین گل',metric:'goals',desc:'مجموع گل‌های زده در تمام بازی‌ها'},
+ {key:'wins',name:'برد',metric:'wins',desc:'مجموع بردهای هر بازی؛ بازی مقابل کامپیوتر هم حساب می‌شود'},
+ {key:'outside',name:'پشت هجده',metric:'outside',desc:'مجموع گل‌های پشت هجده در تمام بازی‌ها'},
+ {key:'freeKick',name:'ایستگاهی',metric:'freeKick',desc:'مجموع گل‌های ایستگاهی در تمام بازی‌ها'},
+ {key:'headers',name:'هد',metric:'headers',desc:'مجموع گل‌های با سر در تمام بازی‌ها'},
+ {key:'dribbles',name:'دریبل',metric:'dribbles',desc:'مجموع دریبل‌های موفق در تمام بازی‌ها'},
+ {key:'goalDiff',name:'تفاضل',metric:'goalDiff',desc:'جمع تفاضل هر بازی؛ تفاضل هر مسابقه جداگانه ثبت می‌شود'},
+ {key:'champion',name:'قهرمان',metric:'champion',desc:'انتخاب دستی در پایان رقابت'}
+];
+function blankAwardStats(){return {goals:0,assists:0,wins:0,outside:0,freeKick:0,headers:0,dribbles:0,goalDiff:0,goalDiffGoals:0,matches:0,scored:0,conceded:0};}
+function blankAwards(){return {names:{saeed:'سعید',behzad:'بهزاد'},enabled:AWARD_OPTIONS.map(x=>x.key),stats:{saeed:blankAwardStats(),behzad:blankAwardStats()},adjustments:{saeed:blankAwardStats(),behzad:blankAwardStats()},champion:null,history:[],finalSnapshot:null};}
+function normalizeAwards(a){
+ const d=blankAwards(),x={...d,...(a||{})};
+ x.names={...d.names,...(a?.names||{})};
+ x.enabled=Array.isArray(a?.enabled)&&a.enabled.length?a.enabled.filter(k=>AWARD_OPTIONS.some(o=>o.key===k)):d.enabled.slice();
+ x.stats={saeed:{...blankAwardStats(),...(a?.stats?.saeed||{})},behzad:{...blankAwardStats(),...(a?.stats?.behzad||{})}};
+ x.adjustments={saeed:{...blankAwardStats(),...(a?.adjustments?.saeed||{})},behzad:{...blankAwardStats(),...(a?.adjustments?.behzad||{})}};
+ x.history=Array.isArray(a?.history)?a.history:[]; x.champion=a?.champion||null; x.finalSnapshot=a?.finalSnapshot||null;
+ return x;
+}
+function awardOption(key){return AWARD_OPTIONS.find(x=>x.key===key)}
+function compareAwardDiffRecord(a,b){
+ const ad=num(a?.diff,0),bd=num(b?.diff,0);
+ if(ad!==bd)return ad-bd;
+ const ag=num(a?.goalsFor,0),bg=num(b?.goalsFor,0);
+ if(ag!==bg)return ag-bg;
+ return 0;
+}
+function bestAwardDiffRecord(a,who){
+ let best=null;
+ (a.history||[]).forEach(h=>{
+  const w=h.who==='behzad'?'behzad':'saeed';
+  if(w!==who)return;
+  if(!best||compareAwardDiffRecord(h,best)>0)best=h;
+ });
+ return best;
+}
+function aggregateAwardHistory(a){
+ const out={saeed:blankAwardStats(),behzad:blankAwardStats()};
+ (a.history||[]).forEach(h=>{
+  const w=h.who==='behzad'?'behzad':'saeed',s=out[w];
+  s.matches+=1; s.scored+=num(h.goalsFor,0); s.conceded+=num(h.goalsAgainst,0); s.goals+=num(h.goalsFor,0);
+  s.assists+=num(h.assists,0); s.outside+=num(h.outside,0); s.freeKick+=num(h.freeKick,0);
+  s.headers+=num(h.headers,0); s.dribbles+=num(h.dribbles,0);
+  if(h.win)s.wins+=1;
+ });
+ ['saeed','behzad'].forEach(w=>{
+  const best=bestAwardDiffRecord(a,w);
+  out[w].goalDiff=best?num(best.diff,0):0;
+  out[w].goalDiffGoals=best?num(best.goalsFor,0):0;
+ });
+ return out;
+}
+function computedAwardStats(a,who){
+ const raw=aggregateAwardHistory(a)[who]||blankAwardStats();
+ const adj=a.adjustments?.[who]||blankAwardStats();
+ const out={}; Object.keys(raw).forEach(k=>out[k]=num(raw[k],0)+num(adj[k],0));
+ out.matches=Math.max(0,out.matches);
+ return out;
+}
+function refreshAwardStats(a){a.stats.saeed=computedAwardStats(a,'saeed');a.stats.behzad=computedAwardStats(a,'behzad');return a.stats;}
+
+const TABS=[['home','خانه'],['players','بازیکنان خودمان'],['market','بازار'],['matches','بازی‌ها'],['awards','جوایز'],['draft','قرعه‌کشی تیم'],['profiles','نسخه‌ها / پچ‌ها'],['settings','تنظیمات']];
+const POSITION_OPTIONS=['GK','CB','SB','DH','OH','WG','CF'];
+const POS_FA={GK:'دروازه‌بان',CB:'مدافع وسط',SB:'مدافع کناری',DH:'هافبک دفاعی',OH:'هافبک هجومی',WG:'وینگر',CF:'مهاجم مرکزی'};
+
+function uid(prefix='id'){return prefix+'_'+Math.random().toString(36).slice(2,9)+'_'+Date.now().toString(36)}
+function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
+function num(v,fallback=0){const n=Number(v);return Number.isFinite(n)?n:fallback}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function posName(p){return POS_FA[p]||p||'—'}
+function blankStats(){const o={};STAT_DEFS.forEach(s=>o[s.key]=17);return o}
+function blankCounters(){return {dribble:0,header:0,headerAccuracy:0,assist:0,outside:0,freeKick:0,goalShot:0,goalAccel:0,goalSpeed:0,goals:0,wins:0,score:0,growth:0}}
+function normalizeStats(s){const o=blankStats();STAT_DEFS.forEach(d=>o[d.key]=clamp(num(s?.[d.key],17),1,19));return o}
+function normalizeCounters(c){return {...blankCounters(),...(c||{})}}
+function newPlayer(data={}){return {id:data.id||uid('pl'),name:String(data.name||'بازیکن جدید').trim(),team:String(data.team||'بدون تیم').trim(),position:data.position||'OH',age:clamp(num(data.age,24),15,60),coins:Math.max(0,num(data.coins,0)),stats:normalizeStats(data.stats),baseStats:normalizeStats(data.baseStats||data.stats),c:normalizeCounters(data.c),origin:data.origin||'custom',purchasedFrom:data.purchasedFrom||null,purchaseCost:num(data.purchaseCost,0),createdAt:data.createdAt||new Date().toISOString()}}
+function newMarketPlayer(data={}){return {id:data.id||uid('mkt'),name:String(data.name||'بازیکن بازار').trim(),club:String(data.club||'').trim(),position:data.position||'CF',price:Math.max(0,num(data.price,100)),stats:normalizeStats(data.stats),note:String(data.note||'').trim(),createdAt:data.createdAt||new Date().toISOString()}}
+function blankDraft(){return {teams:[],participants:[],results:[],history:[],myTeams:[],friendTeams:[],myName:'من',friendName:'دوستم',myResult:null,friendResult:null,myHistory:[],friendHistory:[]}}
+function newProfile(name='WE2002 اصلی'){return {id:uid('prof'),name,players:[],market:[],matches:[],draft:blankDraft(),rules:clone(DEFAULT_RULES),awards:blankAwards(),createdAt:new Date().toISOString()}}
+function blankState(){const p=newProfile('WE2002 اصلی');return {version:4,activeProfileId:p.id,profiles:[p],ui:{tab:'home',query:'',marketQuery:''}}}
+
+function migrateLegacy(raw){
+ const st=blankState(), p=st.profiles[0];
+ if(!raw||typeof raw!=='object')return st;
+ p.rules={...p.rules,...(raw.rules||{})};
+ if(Array.isArray(raw.players))p.players=raw.players.map(x=>newPlayer({name:x.name,team:x.team,coins:x.coins,stats:legacyToStats(x.stats),c:x.c,origin:'custom'}));
+ if(Array.isArray(raw.matches))p.matches=raw.matches.map(m=>({id:m.id||uid('match'),date:m.date||'',teamAPlayerId:m.teamAPlayerId||null,teamBPlayerId:m.teamBPlayerId||null,teamA:String(m.teamA||''),teamB:String(m.teamB||''),scoreA:num(m.scoreA),scoreB:num(m.scoreB),events:Array.isArray(m.events)?m.events:[]}));
+ return st;
+}
+function legacyToStats(s){return {offense:17,defense:17,header:num(s?.header,17),dribble:num(s?.dribble,17),pass:num(s?.pass,17),shotAcc:17,curve:17,technique:num(s?.technique,17),response:17,acceleration:num(s?.accel,17),speed:num(s?.speed,17),body:17,stamina:17,shotPower:num(s?.shot,17),jump:17,aggressive:17}}
+function normalizeState(s){
+ if(!s||typeof s!=='object')return blankState();
+ if(Array.isArray(s.profiles)){
+  const st={version:4,activeProfileId:s.activeProfileId||s.profiles[0]?.id,profiles:s.profiles,ui:{tab:s.ui?.tab||'home',query:'',marketQuery:''}};
+  st.profiles=st.profiles.map(p=>{const d={...blankDraft(),...(p.draft||{})};if(!d.myTeams.length&&Array.isArray(d.teams)&&d.teams.length)d.myTeams=d.teams.slice();if(!d.myName)d.myName='من';if(!d.friendName)d.friendName='دوستم';return {id:p.id||uid('prof'),name:String(p.name||'نسخه'),players:Array.isArray(p.players)?p.players.map(newPlayer):[],market:Array.isArray(p.market)?p.market.map(newMarketPlayer):[],matches:Array.isArray(p.matches)?p.matches.map(m=>({...m,events:Array.isArray(m.events)?m.events:[]})):[],draft:{...d,teams:Array.isArray(d.teams)?d.teams:[],participants:Array.isArray(d.participants)?d.participants:[],results:Array.isArray(d.results)?d.results:[],history:Array.isArray(d.history)?d.history:[],myTeams:Array.isArray(d.myTeams)?d.myTeams:[],friendTeams:Array.isArray(d.friendTeams)?d.friendTeams:[],myResult:d.myResult||null,friendResult:d.friendResult||null,myHistory:Array.isArray(d.myHistory)?d.myHistory:[],friendHistory:Array.isArray(d.friendHistory)?d.friendHistory:[]},rules:normalizeRules(p.rules),awards:normalizeAwards(p.awards)}});
+  if(!st.profiles.some(x=>x.id===st.activeProfileId))st.activeProfileId=st.profiles[0]?.id;
+  return st;
+ }
+ return migrateLegacy(s);
+}
+function normalizeRules(r){const d=clone(DEFAULT_RULES),x={...d,...(r||{})};x.prizes=Array.isArray(r?.prizes)&&r.prizes.length?r.prizes.map((a,i)=>({key:a.key||('prize'+i),name:String(a.name||'جایزه'),amount:Math.max(0,num(a.amount))})):d.prizes;x.thresholds={...d.thresholds,...(r?.thresholds||{})};return x}
+
+let state=(()=>{try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)return normalizeState(JSON.parse(raw));const legacy=localStorage.getItem(LEGACY_KEY);if(legacy)return migrateLegacy(JSON.parse(legacy));}catch(e){}return blankState()})();
+
+function activeProfile(){return state.profiles.find(p=>p.id===state.activeProfileId)||state.profiles[0]}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function flash(msg,type='ok'){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.toggle('danger',type==='error');t.classList.add('show');clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>t.classList.remove('show'),2600)}
+function updateAndRender(msg){saveState();render();if(msg)flash(msg)}
+function player(id){return activeProfile().players.find(x=>x.id===id)}
+function marketPlayer(id){return activeProfile().market.find(x=>x.id===id)}
+function totalPrizes(){const pr=activeProfile(),enabled=new Set(pr.awards?.enabled||[]);return pr.rules.prizes.filter(x=>enabled.has(x.key)).reduce((a,x)=>a+num(x.amount),0)}
+function currentPrizeBudget(){return activeProfile().rules.pot-totalPrizes()}
+function getPlayerName(id){return player(id)?.name||'حذف شده'}
+
+function addProgress(pl,counterKey,statKey,threshold,amountPerMilestone=1){
+ let count=num(pl.c[counterKey],0),gained=0;const every=Math.max(1,num(threshold,1));
+ while(count>=every){count-=every;gained+=amountPerMilestone;}
+ pl.c[counterKey]=count;if(gained>0){pl.stats[statKey]=clamp(num(pl.stats[statKey],17)+gained,1,19);pl.c.growth=num(pl.c.growth,0)+gained}
+ return gained;
+}
+function recordPlayerEventOnProfile(profile,playerId,type,n=1){
+ const pl=profile.players.find(x=>x.id===playerId);if(!pl)return {ok:false,error:'بازیکن پیدا نشد'};
+ n=Math.max(0,Math.floor(num(n,0)));if(n===0)return {ok:true,gains:{}};
+ const th=profile.rules.thresholds,gains={};
+ // هر گل واقعی (معمولی، سر، پشت هجده یا ایستگاهی) همچنان در شمارش کلی گل/شتاب/سرعت لحاظ می‌شود.
+ if(['goal','header','outside','freeKick'].includes(type)){
+  pl.c.goals+=n;pl.c.score+=n;pl.c.goalAccel+=n;pl.c.goalSpeed+=n;
+  // قانون کلی گل: هر 5 گل => +1 Acceleration و هر 10 گل => +1 Speed
+  gains.accel=addProgress(pl,'goalAccel','acceleration',th.goalAccel);
+  gains.speed=addProgress(pl,'goalSpeed','speed',th.goalSpeed);
+ }
+ // 1 دریبل موفق = +1 DRIBBLE
+ if(type==='dribble'){
+   pl.c.dribble+=n;
+   gains.dribble=addProgress(pl,'dribble','dribble',th.dribble);
+ }
+ // هر گل با سر: یک شمارنده برای «دقت سر» و هر 2 سر = +1 HEADER.
+ // «دقت سر» را به‌صورت شمارندهٔ جدا نگه می‌داریم تا 16 استیت اصلی تغییر نکند.
+ else if(type==='header'){
+   pl.c.headerAccuracy=num(pl.c.headerAccuracy,0)+n;
+   pl.c.header+=n;
+   gains.header=addProgress(pl,'header','header',th.header);
+   gains.headerAccuracy=n;
+ }
+ // هر 5 پاس گل = +1 PASS و +1 TECHNIQUE
+ else if(type==='assist'){
+   pl.c.assist+=n;let loops=0;const every=Math.max(1,num(th.assist,5));
+   while(pl.c.assist>=every){pl.c.assist-=every;loops++;}
+   if(loops){pl.stats.pass=clamp(pl.stats.pass+loops,1,19);pl.stats.technique=clamp(pl.stats.technique+loops,1,19);pl.c.growth=num(pl.c.growth,0)+(loops*2)}
+   gains.assist=loops;
+ }
+ // هر 5 گل پشت هجده = +1 SHOOT POWER
+ else if(type==='outside'){
+   pl.c.outside+=n;gains.outside=addProgress(pl,'outside','shotPower',th.outside);
+ }
+ // هر 1 گل ایستگاهی = +1 SHOOT ACCURACY و +1 CURVE
+ else if(type==='freeKick'){
+   pl.c.freeKick+=n;
+   // هر گل ایستگاهی = +1 Shoot Accuracy و +1 Curve
+   pl.stats.shotAcc=clamp(num(pl.stats.shotAcc,17)+n,1,19);
+   pl.stats.curve=clamp(num(pl.stats.curve,17)+n,1,19);
+   pl.c.growth=num(pl.c.growth,0)+(n*2);
+   gains.freeKick={shotAcc:n,curve:n};
+ }
+ return {ok:true,gains};
+}
+function eventName(t){return ({dribble:'دریبل موفق',header:'گل با سر',assist:'پاس گل',outside:'گل پشت هجده',freeKick:'گل ایستگاهی',goal:'گل'}[t]||t)}
+
+function openModal(html){document.getElementById('modalbox').innerHTML=html;document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function statInputs(prefix,stats){return `<div class="field f12"><div class="title"><h2 style="font-size:14px">۱۶ استیت WE2002 / PS1</h2><span class="tag">هر مقدار 1 تا 19</span></div></div>`+STAT_DEFS.map(s=>`<div class="field f3"><label>${s.fa} <span class="muted">(${s.en})</span></label><input id="${prefix}${s.key}" type="number" min="1" max="19" value="${clamp(num(stats?.[s.key],17),1,19)}"></div>`).join('')}
+function readStats(prefix){const s={};STAT_DEFS.forEach(d=>s[d.key]=clamp(num(document.getElementById(prefix+d.key)?.value,17),1,19));return s}
+
+function openOwnedPlayerModal(id=''){
+ const pl=id?player(id):null,s=pl?.stats||blankStats();
+ openModal(`<div class="title"><h2>${pl?'ویرایش بازیکن':'افزودن بازیکن خودمان'}</h2><button class="btn" data-close>بستن</button></div><form class="form" id="ownedPlayerForm"><div class="field f6"><label>نام</label><input id="opName" required value="${esc(pl?.name||'')}"></div><div class="field f3"><label>تیم</label><input id="opTeam" required value="${esc(pl?.team||'')}"></div><div class="field f3"><label>پست</label><select id="opPos">${POSITION_OPTIONS.map(x=>`<option value="${x}" ${pl?.position===x?'selected':''}>${x} — ${posName(x)}</option>`).join('')}</select></div><div class="field f3"><label>سن</label><input id="opAge" type="number" min="15" max="60" value="${pl?.age??24}"></div><div class="field f3"><label>سکه فعلی</label><input id="opCoins" type="number" min="0" value="${pl?.coins??0}"></div>${statInputs('op_',s)}<div class="field f12"><div class="actions"><button class="btn primary">ذخیره</button></div></div></form>`);
+ document.getElementById('ownedPlayerForm').onsubmit=e=>{e.preventDefault();saveOwnedPlayer(id)};
+}
+function saveOwnedPlayer(id){const pr=activeProfile(),pl=id?player(id):newPlayer();pl.name=document.getElementById('opName').value.trim();pl.team=document.getElementById('opTeam').value.trim();pl.position=document.getElementById('opPos').value;pl.age=clamp(num(document.getElementById('opAge').value,24),15,60);pl.coins=Math.max(0,num(document.getElementById('opCoins').value,0));pl.stats=readStats('op_');pl.baseStats=clone(pl.stats);if(!id)pr.players.push(pl);closeModal();updateAndRender('بازیکن ذخیره شد')}
+function editCoins(id){const pl=player(id);if(!pl)return;openModal(`<div class="title"><h2>ویرایش سکه — ${esc(pl.name)}</h2><button class="btn" data-close>بستن</button></div><div class="notice">موجودی فعلی: <b>${pl.coins}</b> سکه</div><form id="coinForm" class="form" style="margin-top:10px"><div class="field f6"><label>موجودی جدید</label><input id="coinValue" type="number" min="0" value="${pl.coins}" required></div><div class="field f6"><label>تغییر سریع</label><div class="actions"><button type="button" class="btn" data-delta="-100">−100</button><button type="button" class="btn" data-delta="-50">−50</button><button type="button" class="btn" data-delta="50">+50</button><button type="button" class="btn" data-delta="100">+100</button></div></div><div class="field f12"><button class="btn green">ثبت موجودی</button></div></form>`);document.getElementById('coinForm').onsubmit=e=>{e.preventDefault();pl.coins=Math.max(0,num(document.getElementById('coinValue').value,0));closeModal();updateAndRender('موجودی سکه ثبت شد')};document.querySelectorAll('[data-delta]').forEach(b=>b.onclick=()=>{const input=document.getElementById('coinValue');input.value=Math.max(0,num(input.value)+num(b.dataset.delta))})}
+function confirmDeleteOwned(id){const pl=player(id);if(!pl)return;if(!confirm(`بازیکن «${pl.name}» حذف شود؟ این حذف فقط از لیست بازیکنان خودمان است و بازیکن بازار مربوطه را پاک نمی‌کند.`))return;const pr=activeProfile();pr.players=pr.players.filter(x=>x.id!==id);updateAndRender('بازیکن حذف شد')}
+
+function openMarketPlayerModal(id=''){
+ const m=id?marketPlayer(id):null,s=m?.stats||blankStats();
+ openModal(`<div class="title"><h2>${m?'ویرایش بازیکن بازار':'افزودن بازیکن به بازار'}</h2><button class="btn" data-close>بستن</button></div><form class="form" id="marketPlayerForm"><div class="field f6"><label>نام بازیکن</label><input id="mpName" required value="${esc(m?.name||'')}"></div><div class="field f3"><label>باشگاه / منبع</label><input id="mpClub" value="${esc(m?.club||'')}"></div><div class="field f3"><label>پست</label><select id="mpPos">${POSITION_OPTIONS.map(x=>`<option value="${x}" ${m?.position===x?'selected':''}>${x} — ${posName(x)}</option>`).join('')}</select></div><div class="field f3"><label>قیمت بازار (سکه)</label><input id="mpPrice" type="number" min="0" value="${m?.price??100}"></div><div class="field f9"><label>توضیح</label><input id="mpNote" value="${esc(m?.note||'')}"></div>${statInputs('mp_',s)}<div class="field f12"><button class="btn primary">ذخیره در بازار</button></div></form>`);
+ document.getElementById('marketPlayerForm').onsubmit=e=>{e.preventDefault();saveMarketPlayer(id)};
+}
+function saveMarketPlayer(id){const pr=activeProfile(),m=id?marketPlayer(id):newMarketPlayer();m.name=document.getElementById('mpName').value.trim();m.club=document.getElementById('mpClub').value.trim();m.position=document.getElementById('mpPos').value;m.price=Math.max(0,num(document.getElementById('mpPrice').value,0));m.note=document.getElementById('mpNote').value.trim();m.stats=readStats('mp_');if(!id)pr.market.push(m);closeModal();updateAndRender('بازیکن بازار ذخیره شد')}
+function confirmDeleteMarket(id){const m=marketPlayer(id);if(!m)return;if(!confirm(`«${m.name}» از بازار حذف شود؟ خرید قبلیِ آن، اگر وجود داشته باشد، تحت تأثیر قرار نمی‌گیرد.`))return;const pr=activeProfile();pr.market=pr.market.filter(x=>x.id!==id);updateAndRender('بازیکن بازار حذف شد')}
+function openBuyModal(id){const m=marketPlayer(id),pr=activeProfile();if(!m)return;const buyers=pr.players;if(!buyers.length){flash('اول حداقل یک بازیکن/نفر خودمان اضافه کن','error');return}openModal(`<div class="title"><h2>خرید «${esc(m.name)}»</h2><button class="btn" data-close>بستن</button></div><div class="notice">قیمت: <b>${m.price}</b> سکه · ${m.position} · ${esc(m.club||'منبع بازار')}</div><form id="buyForm" class="form" style="margin-top:10px"><div class="field f12"><label>خریدار</label><select id="buyerId">${buyers.map(x=>`<option value="${x.id}">${esc(x.name)} — موجودی ${x.coins} سکه</option>`).join('')}</select></div><div class="field f12"><div id="buyerInfo" class="mini"></div></div><div class="field f12"><button class="btn gold">خرید قطعی و افزودن به لیست خودمان</button></div></form>`);const info=()=>{const b=player(document.getElementById('buyerId').value);document.getElementById('buyerInfo').innerHTML=b?`موجودی بعد از خرید: <b>${b.coins-m.price}</b> سکه`:'—'};document.getElementById('buyerId').onchange=info;info();document.getElementById('buyForm').onsubmit=e=>{e.preventDefault();confirmPurchase(id)} }
+function purchaseMarketPlayer(profile,marketId,buyerId){const m=profile.market.find(x=>x.id===marketId),buyer=profile.players.find(x=>x.id===buyerId);if(!m||!buyer)return {ok:false,error:'بازیکن بازار یا خریدار پیدا نشد'};const cost=buyPrice(m);if(buyer.coins<cost)return {ok:false,error:'سکه کافی نیست'};buyer.coins-=cost;const copy=newPlayer({name:m.name,team:buyer.team,position:m.position,age:24,coins:0,stats:m.stats,c:blankCounters(),origin:'purchased',purchasedFrom:m.name,purchaseCost:cost});profile.players.push(copy);return {ok:true,copy,cost}}
+function confirmPurchase(id){const pr=activeProfile(),buyer=document.getElementById('buyerId')?.value;const result=purchaseMarketPlayer(pr,id,buyer);if(!result.ok){flash(result.error,'error');return}closeModal();updateAndRender(`«${result.copy.name}» خریداری شد و به انتهای لیست شما اضافه شد`)}
+
+function openEventModal(id){const pl=player(id);if(!pl)return;const th=activeProfile().rules.thresholds;openModal(`<div class="title"><h2>ثبت اتفاق — ${esc(pl.name)}</h2><button class="btn" data-close>بستن</button></div><div class="notice">پس از رسیدن به حدنصاب، شمارنده فقط به اندازهٔ حدنصاب کم می‌شود و <b>باقی‌مانده حفظ می‌شود</b>. مثال: ۱۲ گل با حدنصاب ۵ ⇒ دو افزایش و ۲ گل ذخیره.</div><form id="eventForm" class="form" style="margin-top:10px"><div class="field f4"><label>گل معمولی</label><input id="ev_goal" type="number" min="0" value="0"><span class="muted small">هر ۵ گل = +۱ شتاب · هر ۱۰ گل = +۱ سرعت</span></div><div class="field f4"><label>گل با سر</label><input id="ev_header" type="number" min="0" value="0"><span class="muted small">هر ۲ سر = +۱ سرزنی · هر سر، دقت سر +۱</span></div><div class="field f4"><label>دریبل موفق</label><input id="ev_dribble" type="number" min="0" value="0"><span class="muted small">دریبل ${th.dribble}</span></div><div class="field f4"><label>پاس گل</label><input id="ev_assist" type="number" min="0" value="0"><span class="muted small">هر ۵ پاس گل = +۱ پاس و +۱ تکنیک</span></div><div class="field f4"><label>گل پشت هجده</label><input id="ev_outside" type="number" min="0" value="0"><span class="muted small">هر ۵ گل پشت هجده = +۱ قدرت شوت</span></div><div class="field f4"><label>گل ایستگاهی</label><input id="ev_freeKick" type="number" min="0" value="0"><span class="muted small">هر ۱ گل ایستگاهی = +۱ دقت شوت و +۱ کات</span></div><div class="field f12"><button class="btn green">ثبت و اعمال رشد</button></div></form>`);document.getElementById('eventForm').onsubmit=e=>{e.preventDefault();const vals={goal:+document.getElementById('ev_goal').value||0,header:+document.getElementById('ev_header').value||0,dribble:+document.getElementById('ev_dribble').value||0,assist:+document.getElementById('ev_assist').value||0,outside:+document.getElementById('ev_outside').value||0,freeKick:+document.getElementById('ev_freeKick').value||0};const gains={};Object.entries(vals).forEach(([t,n])=>{if(n)gains[t]=recordPlayerEventOnProfile(activeProfile(),id,t,n).gains});closeModal();updateAndRender('اتفاقات ثبت و رشد اعمال شد')}
+}
+
+function openMatchModal(){const pr=activeProfile();if(pr.players.length<1){flash('حداقل یک بازیکن خودمان لازم است','error');return}const opts=pr.players.map(x=>`<option value="${x.id}">${esc(x.name)} — ${esc(x.team)}</option>`).join('');openModal(`<div class="title"><h2>ثبت بازی</h2><button class="btn" data-close>بستن</button></div><form id="matchForm" class="form"><div class="field f4"><label>تاریخ</label><input id="mDate" type="date" value="${new Date().toISOString().slice(0,10)}"></div><div class="field f4"><label>نوع طرف اول</label><select id="mAType"><option value="human">بازیکن خودمان</option><option value="computer">کامپیوتر</option></select></div><div class="field f4"><label>نوع طرف دوم</label><select id="mBType"><option value="human">بازیکن خودمان</option><option value="computer">کامپیوتر</option></select></div><div class="field f6"><label>بازیکن طرف اول</label><select id="mAPlayer">${opts}</select></div><div class="field f6"><label>نام تیم کامپیوتر طرف اول</label><input id="mAComputer" placeholder="مثلاً Brazil"></div><div class="field f6"><label>بازیکن طرف دوم</label><select id="mBPlayer">${opts}</select></div><div class="field f6"><label>نام تیم کامپیوتر طرف دوم</label><input id="mBComputer" placeholder="مثلاً Argentina"></div><div class="field f6"><label>گل طرف اول</label><input id="mSA" type="number" min="0" value="0"></div><div class="field f6"><label>گل طرف دوم</label><input id="mSB" type="number" min="0" value="0"></div><div class="field f12"><div class="notice"><b>سکه برد:</b> برد مقابل بازیکن و برد مقابل کامپیوتر می‌توانند مبلغ جداگانه داشته باشند. کامپیوتر سکه نمی‌گیرد.</div></div><div class="field f12"><button class="btn gold">ثبت نتیجه</button></div></form>`);const sync=()=>{const a=document.getElementById('mAType').value,b=document.getElementById('mBType').value;document.getElementById('mAPlayer').disabled=a!=='human';document.getElementById('mAComputer').disabled=a!=='computer';document.getElementById('mBPlayer').disabled=b!=='human';document.getElementById('mBComputer').disabled=b!=='computer'};document.getElementById('mAType').onchange=sync;document.getElementById('mBType').onchange=sync;sync();document.getElementById('matchForm').onsubmit=e=>{e.preventDefault();saveMatch()}}
+function sideFromForm(prefix){const type=document.getElementById(prefix+'Type').value;if(type==='human'){const pl=player(document.getElementById(prefix+'Player').value);return pl?{type:'human',playerId:pl.id,team:pl.team,name:pl.name}:null}const team=(document.getElementById(prefix+'Computer').value||'کامپیوتر').trim()||'کامپیوتر';return {type:'computer',playerId:null,team,name:team}}
+function saveMatch(){const pr=activeProfile(),a=sideFromForm('mA'),b=sideFromForm('mB'),sa=Math.max(0,Math.floor(num(document.getElementById('mSA').value,0))),sb=Math.max(0,Math.floor(num(document.getElementById('mSB').value,0)));if(!a||!b){flash('اطلاعات دو طرف را کامل کن','error');return}if(a.type==='human'&&b.type==='human'&&a.playerId===b.playerId){flash('دو طرف بازی نمی‌توانند یک بازیکن باشند','error');return}let winnerId=null,rewardA=0,rewardB=0;if(sa>sb&&a.type==='human'){winnerId=a.playerId;rewardA=b.type==='computer'?num(pr.rules.coinWinComputer,pr.rules.coinWin):num(pr.rules.coinWin,0);const w=player(a.playerId);w.coins+=rewardA;w.c.wins++}else if(sb>sa&&b.type==='human'){winnerId=b.playerId;rewardB=a.type==='computer'?num(pr.rules.coinWinComputer,pr.rules.coinWin):num(pr.rules.coinWin,0);const w=player(b.playerId);w.coins+=rewardB;w.c.wins++}else if(sa===sb){if(a.type==='human'){rewardA=num(pr.rules.coinDraw,0);player(a.playerId).coins+=rewardA}if(b.type==='human'){rewardB=num(pr.rules.coinDraw,0);player(b.playerId).coins+=rewardB}}pr.matches.push({id:uid('match'),date:document.getElementById('mDate').value,teamAPlayerId:a.playerId,teamBPlayerId:b.playerId,teamA:a.team,teamB:b.team,teamAType:a.type,teamBType:b.type,teamAName:a.name,teamBName:b.name,scoreA:sa,scoreB:sb,winnerId,rewardA,rewardB,events:[]});closeModal();updateAndRender('نتیجه بازی ثبت شد')}
+
+function deleteMatch(id){const pr=activeProfile();if(!confirm('این بازی حذف شود؟ سکه و رکورد برد ثبت‌شدهٔ همین بازی برگردانده می‌شود.'))return;const m=pr.matches.find(x=>x.id===id);if(!m)return;if(m.teamAPlayerId){const a=player(m.teamAPlayerId);if(a){a.coins=Math.max(0,a.coins-num(m.rewardA,0));if(m.winnerId===a.id)a.c.wins=Math.max(0,a.c.wins-1)}}if(m.teamBPlayerId){const b=player(m.teamBPlayerId);if(b){b.coins=Math.max(0,b.coins-num(m.rewardB,0));if(m.winnerId===b.id)b.c.wins=Math.max(0,b.c.wins-1)}}pr.matches=pr.matches.filter(x=>x.id!==id);updateAndRender('بازی حذف شد و اثر سکه و برد برگردانده شد')}
+
+function buyPrice(m){return Math.max(0,num(m.price,0))}
+
+function openAwardsEdit(){
+ const pr=activeProfile(),r=pr.rules,a=pr.awards||blankAwards();
+ const prizeMap=Object.fromEntries((r.prizes||[]).map(x=>[x.key,x]));
+ const enabled=new Set(a.enabled);
+ openModal(`<div class="title"><h2>تنظیمات مستقل جوایز</h2><button class="btn" data-close>بستن</button></div>
+ <div class="notice">این بخش کاملاً جدا از بازیکنان، بازار و Stats است. آمار <b>سعید</b> و <b>بهزاد</b> فقط از همین بخش محاسبه می‌شود.</div>
+ <form id="awardsForm" class="form" style="margin-top:10px">
+  <div class="field f6"><label>نام نفر اول</label><input id="awardSaeedName" value="${esc(a.names.saeed)}"></div>
+  <div class="field f6"><label>نام نفر دوم</label><input id="awardBehzadName" value="${esc(a.names.behzad)}"></div>
+  ${AWARD_OPTIONS.map(o=>{const pv=prizeMap[o.key]||{key:o.key,name:o.name,amount:0};return `<div class="field f12"><div class="mini"><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="awardOn_${o.key}" ${enabled.has(o.key)?'checked':''}> <b>${esc(o.name)}</b><span class="muted">${esc(o.desc)}</span></label><div class="form" style="margin-top:8px"><div class="field f6"><label>عنوان جایزه</label><input id="awardName_${o.key}" value="${esc(pv.name||o.name)}"></div><div class="field f6"><label>مبلغ جایزه (تومان)</label><input id="awardAmount_${o.key}" type="number" min="0" value="${num(pv.amount,0)}"></div></div></div></div>`}).join('')}
+  <div class="field f12"><button class="btn gold">ذخیره تنظیمات جوایز</button></div>
+ </form>`);
+ document.getElementById('awardsForm').onsubmit=e=>{
+  e.preventDefault();
+  a.names.saeed=document.getElementById('awardSaeedName').value.trim()||'سعید';
+  a.names.behzad=document.getElementById('awardBehzadName').value.trim()||'بهزاد';
+  a.enabled=AWARD_OPTIONS.filter(o=>document.getElementById('awardOn_'+o.key).checked).map(o=>o.key);
+  a.finalSnapshot=null;
+  for(const o of AWARD_OPTIONS){
+   let pv=r.prizes.find(x=>x.key===o.key);
+   if(!pv){pv={key:o.key,name:o.name,amount:0};r.prizes.push(pv)}
+   pv.name=document.getElementById('awardName_'+o.key).value.trim()||o.name;
+   pv.amount=Math.max(0,num(document.getElementById('awardAmount_'+o.key).value,0));
+  }
+  if(totalPrizes()>r.pot){flash('جمع جوایز فعال از بودجه کل کاپ بیشتر است','error');return}
+  pr.awards=a;closeModal();updateAndRender('تنظیمات جوایز ذخیره شد');
+ };
+}
+
+function recordAwardMatch(){
+ const pr=activeProfile(),a=pr.awards||blankAwards(),who=document.getElementById('awardWho').value;
+ const playerName=who==='saeed'?a.names.saeed:a.names.behzad;
+ const gameName=document.getElementById('awardMatchName').value.trim()||`بازی ${a.history.length+1}`;
+ const gf=Math.max(0,Math.floor(num(document.getElementById('awardGF').value,0)));
+ const ga=Math.max(0,Math.floor(num(document.getElementById('awardGA').value,0)));
+ const assists=Math.max(0,Math.floor(num(document.getElementById('awardAssists').value,0)));
+ const outside=Math.max(0,Math.floor(num(document.getElementById('awardOutside').value,0)));
+ const freeKick=Math.max(0,Math.floor(num(document.getElementById('awardFreeKick').value,0)));
+ const headers=Math.max(0,Math.floor(num(document.getElementById('awardHeaders').value,0)));
+ const dribbles=Math.max(0,Math.floor(num(document.getElementById('awardDribbles').value,0)));
+ const diff=gf-ga;
+ // هر مسابقه یک رکورد مستقل دارد؛ تفاضل فقط برای همان مسابقه ثبت می‌شود و در پایان بین همه رکوردها جمع می‌شود.
+ a.history.push({id:uid('awmatch'),when:new Date().toLocaleString('fa-IR'),who,name:gameName,playerName,goalsFor:gf,goalsAgainst:ga,assists,outside,freeKick,headers,dribbles,diff,win:gf>ga});
+ a.finalSnapshot=null; refreshAwardStats(a);
+ pr.awards=a;closeModal();updateAndRender(`عملکرد ${playerName} در ${gameName} ثبت شد`);
+}
+function openAwardMatch(){
+ const a=activeProfile().awards||blankAwards();
+ openModal(`<div class="title"><h2>ثبت نتیجه بازی</h2><button class="btn" data-close>بستن</button></div>
+ <div class="notice">فقط نتیجه و آمار همان بازی را وارد کن. هر بازی جداگانه ثبت می‌شود.</div>
+ <form id="awardMatchForm" class="form" style="margin-top:10px">
+  <div class="field f12"><label>بازیکن</label><div class="actions"><button type="button" class="btn primary" id="whoSaeed">${esc(a.names.saeed)}</button><button type="button" class="btn" id="whoBehzad">${esc(a.names.behzad)}</button></div><input id="awardWho" type="hidden" value="saeed"></div>
+  <div class="field f6"><label id="awardGFLabel">${esc(a.names.saeed)} — گل زده</label><input id="awardGF" type="number" min="0" value="0"></div>
+  <div class="field f6"><label>گل خورده در همان بازی</label><input id="awardGA" type="number" min="0" value="0"></div>
+  <div class="field f12"><div class="mini"><b>نتیجه</b><div id="awardLiveScore" class="statValue">0 - 0</div><div class="small muted">تفاضل این بازی: <span id="awardLiveDiff">0</span></div></div></div>
+  <div class="field f4"><label>پاس گل</label><input id="awardAssists" type="number" min="0" value="0"></div>
+  <div class="field f4"><label>پشت هجده</label><input id="awardOutside" type="number" min="0" value="0"></div>
+  <div class="field f4"><label>ایستگاهی</label><input id="awardFreeKick" type="number" min="0" value="0"></div>
+  <div class="field f4"><label>هد</label><input id="awardHeaders" type="number" min="0" value="0"></div>
+  <div class="field f4"><label>دریبل موفق</label><input id="awardDribbles" type="number" min="0" value="0"></div>
+  <div class="field f4"><label>نام بازی (اختیاری)</label><input id="awardMatchName" placeholder="مثلاً بازی ۱"></div>
+  <div class="field f12"><button class="btn green">ثبت همین بازی</button></div>
+ </form>`);
+ const whoSaeed=document.getElementById('whoSaeed'),whoBehzad=document.getElementById('whoBehzad'),who=document.getElementById('awardWho');
+ const setWho=w=>{who.value=w;whoSaeed.classList.toggle('primary',w==='saeed');whoBehzad.classList.toggle('primary',w==='behzad');document.getElementById('awardGFLabel').textContent=(w==='saeed'?a.names.saeed:a.names.behzad)+' — گل زده';};
+ whoSaeed.onclick=()=>setWho('saeed'); whoBehzad.onclick=()=>setWho('behzad'); setWho('saeed');
+ const sync=()=>{const gf=Math.max(0,Math.floor(Number(document.getElementById('awardGF').value)||0)),ga=Math.max(0,Math.floor(Number(document.getElementById('awardGA').value)||0));document.getElementById('awardLiveScore').textContent=`${gf} - ${ga}`;document.getElementById('awardLiveDiff').textContent=String(gf-ga);document.querySelector('label[for="awardGF"]')};
+ ['awardGF','awardGA'].forEach(id=>document.getElementById(id).addEventListener('input',sync)); sync();
+ document.getElementById('awardMatchForm').onsubmit=e=>{e.preventDefault();recordAwardMatch()};
+}
+
+function editAwardStats(who){
+ const a=activeProfile().awards||blankAwards(),st=computedAwardStats(a,who),raw=aggregateAwardHistory(a)[who]||blankAwardStats(),name=who==='saeed'?a.names.saeed:a.names.behzad;
+ const keys=[['goals','گل'],['assists','پاس گل'],['wins','برد'],['outside','پشت هجده'],['freeKick','ایستگاهی'],['headers','هد'],['dribbles','دریبل'],['goalDiff','تفاضل'],['matches','تعداد بازی'],['scored','گل زده'],['conceded','گل خورده']];
+ openModal(`<div class="title"><h2>ویرایش آمار جوایز — ${esc(name)}</h2><button class="btn" data-close>بستن</button></div><div class="warn">آمار واقعی از سوابق بازی‌ها جمع می‌شود. این قسمت فقط برای «اصلاح دستی» اختلاف است و بعد از اصلاح، نتیجهٔ بازی‌های ثبت‌شده همچنان جداگانه باقی می‌ماند.</div><form id="awardStatsForm" class="form" style="margin-top:10px">${keys.map(([k,l])=>`<div class="field f3"><label>${l}</label><input id="ast_${k}" type="number" value="${num(st[k],0)}"></div>`).join('')}<div class="field f12"><button class="btn primary">ذخیره اصلاح</button></div></form>`);
+ document.getElementById('awardStatsForm').onsubmit=e=>{e.preventDefault();const aa=activeProfile().awards||blankAwards();const adj=aa.adjustments[who]||blankAwardStats();for(const [k] of keys){const desired=num(document.getElementById('ast_'+k).value,0),base=num(raw[k],0);adj[k]=desired-base;}aa.adjustments[who]=adj;refreshAwardStats(aa);aa.finalSnapshot=null;closeModal();updateAndRender('اصلاح آمار جوایز ذخیره شد')};
+}
+function deleteAwardMatch(id){
+ const a=activeProfile().awards||blankAwards(),idx=(a.history||[]).findIndex(h=>h.id===id);if(idx<0)return;if(!confirm('این رکورد بازی از بخش جوایز حذف شود؟ آمار نهایی دوباره محاسبه خواهد شد.'))return;a.history.splice(idx,1);a.finalSnapshot=null;refreshAwardStats(a);updateAndRender('رکورد بازی از جوایز حذف شد')
+}
+function setChampion(){const a=activeProfile().awards||blankAwards();openModal(`<div class="title"><h2>انتخاب قهرمان</h2><button class="btn" data-close>بستن</button></div><div class="notice">قهرمان در این بخش مستقل از بازیکنان انتخاب می‌شود.</div><form id="championForm" class="form"><div class="field f12"><label>قهرمان</label><select id="championWho"><option value="saeed">${esc(a.names.saeed)}</option><option value="behzad">${esc(a.names.behzad)}</option><option value="">هنوز مشخص نشده</option></select></div><div class="field f12"><button class="btn gold">ثبت قهرمان</button></div></form>`);document.getElementById('championWho').value=a.champion||'';document.getElementById('championForm').onsubmit=e=>{e.preventDefault();activeProfile().awards.champion=document.getElementById('championWho').value||null;activeProfile().awards.finalSnapshot=null;closeModal();updateAndRender('قهرمان جوایز ثبت شد')}}
+function finalizeAwards(){
+ const pr=activeProfile(),a=pr.awards||blankAwards(),s={saeed:computedAwardStats(a,'saeed'),behzad:computedAwardStats(a,'behzad')},names=a.names,results=[];
+ a.enabled.filter(k=>k!=='champion').forEach(key=>{
+  const o=awardOption(key);if(!o)return;
+  const prize=pr.rules.prizes.find(x=>x.key===key);
+  let v1=num(s.saeed[o.metric],0),v2=num(s.behzad[o.metric],0),winner=null;
+  if(o.metric==='goalDiff'){
+   const g1=num(s.saeed.goalDiffGoals,0),g2=num(s.behzad.goalDiffGoals,0);
+   if(v1>v2 || (v1===v2&&g1>g2))winner='saeed';
+   else if(v2>v1 || (v1===v2&&g2>g1))winner='behzad';
+   else if(v1!==0||v2!==0||g1!==0||g2!==0)winner='tie';
+  }else{
+   if(v1>v2)winner='saeed';else if(v2>v1)winner='behzad';else if(v1!==0||v2!==0)winner='tie';
+  }
+  results.push({key,name:prize?.name||o.name,amount:num(prize?.amount,0),saeed:v1,behzad:v2,saeedGoals:o.metric==='goalDiff'?num(s.saeed.goalDiffGoals,0):null,behzadGoals:o.metric==='goalDiff'?num(s.behzad.goalDiffGoals,0):null,winner,saeedPayout:winner==='saeed'?num(prize?.amount,0):0,behzadPayout:winner==='behzad'?num(prize?.amount,0):0});
+ });
+ const champPrize=pr.rules.prizes.find(x=>x.key==='champion');if(a.enabled.includes('champion'))results.push({key:'champion',name:champPrize?.name||'قهرمان',amount:num(champPrize?.amount,0),winner:a.champion||null,saeed:a.champion==='saeed'?1:0,behzad:a.champion==='behzad'?1:0,saeedPayout:a.champion==='saeed'?num(champPrize?.amount,0):0,behzadPayout:a.champion==='behzad'?num(champPrize?.amount,0):0});
+ a.finalSnapshot={when:new Date().toLocaleString('fa-IR'),results};updateAndRender('نتیجه نهایی جوایز محاسبه شد')
+}
+
+function openRulesEdit(){const r=activeProfile().rules,th=r.thresholds;openModal(`<div class="title"><h2>تنظیم قوانین</h2><button class="btn" data-close>بستن</button></div><form id="rulesForm" class="form"><div class="field f4"><label>مبلغ کل کاپ</label><input name="pot" type="number" min="0" value="${r.pot}"></div><div class="field f4"><label>سکه هر برد مقابل بازیکن</label><input name="coinWin" type="number" min="0" value="${r.coinWin}"></div><div class="field f4"><label>سکه هر برد مقابل کامپیوتر</label><input name="coinWinComputer" type="number" min="0" value="${r.coinWinComputer??r.coinWin}"></div><div class="field f4"><label>سکه مساوی</label><input name="coinDraw" type="number" min="0" value="${r.coinDraw}"></div><div class="field f4"><label>سکه باخت</label><input name="coinLoss" type="number" min="0" value="${r.coinLoss}"></div>${[['dribble','هر چند دریبل = +1 دریبل'],['header','هر چند گل سر = +1 سرزنی (پیش‌فرض ۲)'],['assist','هر چند پاس گل = +1 پاس و تکنیک'],['outside','هر چند گل پشت هجده = +1 قدرت شوت (پیش‌فرض ۵)'],['freeKick','هر چند گل ایستگاهی = +1 دقت شوت و +1 کات (پیش‌فرض ۱)'],['goalAccel','هر چند گل = +1 شتاب'],['goalSpeed','هر چند گل = +1 سرعت']].map(([k,l])=>`<div class="field f3"><label>${l}</label><input name="th_${k}" type="number" min="1" value="${th[k]}"></div>`).join('')}<div class="field f12"><button class="btn primary">ذخیره قوانین</button></div></form>`);document.getElementById('rulesForm').onsubmit=e=>{e.preventDefault();const fd=new FormData(e.target);['pot','coinWin','coinWinComputer','coinDraw','coinLoss'].forEach(k=>r[k]=Math.max(0,num(fd.get(k),0)));Object.keys(th).forEach(k=>th[k]=Math.max(1,num(fd.get('th_'+k),th[k])));if(totalPrizes()>r.pot){flash('جمع جوایز بیشتر از مبلغ کل کاپ است','error');return}closeModal();updateAndRender('قوانین ذخیره شد')}}
+
+function renderHome(){const pr=activeProfile(),mostGoals=[...pr.players].sort((a,b)=>b.c.goals-a.c.goals).slice(0,5),budget=currentPrizeBudget();document.getElementById('content').innerHTML=`<div class="grid"><div class="card s3"><div class="muted small">بازیکنان خودمان</div><div class="kpi">${pr.players.length}</div></div><div class="card s3"><div class="muted small">بازیکنان بازار</div><div class="kpi">${pr.market.length}</div></div><div class="card s3"><div class="muted small">بازی‌ها</div><div class="kpi">${pr.matches.length}</div></div><div class="card s3"><div class="muted small">بودجه باقی‌مانده جوایز</div><div class="kpi ${budget<0?'danger':'goldText'}">${budget.toLocaleString()}</div></div><div class="card s8"><div class="title"><h2>بازیکنان خودمان</h2><div class="actions"><button class="btn primary" data-act="add-owned">+ بازیکن</button><button class="btn" data-tab="market">بازار</button></div></div>${pr.players.length?pr.players.slice().reverse().slice(0,12).map(renderPlayerCard).join(''):'<div class="empty">هنوز بازیکنی اضافه نشده.</div>'}</div><div class="card s4"><div class="title"><h2>جوایز فعلی</h2><button class="btn" data-act="edit-awards">ویرایش</button></div>${pr.rules.prizes.slice(0,9).map(x=>`<div class="award"><h3>${esc(x.name)}</h3><div class="money">${num(x.amount).toLocaleString()} تومان</div></div>`).join('')}</div><div class="card s12"><div class="notice"><b>نسخه فعال:</b> ${esc(pr.name)}. خریدهای بازار به انتهای «بازیکنان خودمان» اضافه می‌شوند؛ لیست بازار مستقل می‌ماند و حذف/ویرایش هر بخش روی بخش دیگر اثر ندارد.</div></div><div class="card s12"><div class="title"><h2>آمار گلزنان</h2></div>${mostGoals.map((x,i)=>`<div class="rowline"><span>${i+1}. ${esc(x.name)}</span><b>${x.c.goals} گل</b></div>`).join('')||'<div class="empty">آماری وجود ندارد.</div>'}</div></div>`}
+function renderPlayerCard(pl){return `<div class="playerCard"><div><b>${esc(pl.name)}</b><div class="muted small">${esc(pl.team)} · ${posName(pl.position)} · <span class="tag">${pl.origin==='purchased'?'خریداری‌شده':'خودمان'}</span></div></div><div>سکه <b>${pl.coins}</b></div><div>گل <b>${pl.c.goals}</b></div><div>برد <b>${pl.c.wins}</b></div><div>رشد <b>${pl.c.growth}</b></div><div class="actions"><button class="btn" data-act="view-player" data-id="${pl.id}">پروفایل</button><button class="btn" data-act="edit-owned" data-id="${pl.id}">ویرایش</button><button class="btn" data-act="edit-coins" data-id="${pl.id}">سکه</button><button class="btn red" data-act="delete-owned" data-id="${pl.id}">حذف</button></div></div>`}
+function renderPlayers(){const pr=activeProfile(),q=state.ui.query.trim().toLowerCase(),rows=pr.players.filter(x=>!q||x.name.toLowerCase().includes(q)||x.team.toLowerCase().includes(q)||x.position.toLowerCase().includes(q));document.getElementById('content').innerHTML=`<div class="grid"><div class="card s12"><div class="title"><div><h2>بازیکنان خودمان</h2><span class="profileBadge">نسخه: ${esc(pr.name)}</span></div><div class="actions"><button class="btn primary" data-act="add-owned">+ افزودن</button></div></div><input id="playerSearch" class="search" placeholder="جستجوی نام، تیم یا پست" value="${esc(state.ui.query)}"></div><div class="card s12">${rows.length?rows.map(renderPlayerCard).join(''):'<div class="empty">بازیکنی پیدا نشد.</div>'}</div></div>`;document.getElementById('playerSearch').oninput=e=>{state.ui.query=e.target.value;renderPlayers()}}
+function renderPlayerProfile(id){const pl=player(id),th=activeProfile().rules.thresholds;if(!pl)return;openModal(`<div class="title"><h2>${esc(pl.name)}</h2><button class="btn" data-close>بستن</button></div><div class="notice">${esc(pl.team)} · ${posName(pl.position)} · ${pl.origin==='purchased'?'خریداری‌شده از بازار':'بازیکن خودمان'}${pl.origin==='purchased'?` · هزینه خرید ${pl.purchaseCost} سکه`:''}</div><div class="actions" style="margin:10px 0"><button class="btn primary" data-act="edit-owned" data-id="${pl.id}">ویرایش ۱۶ استیت</button><button class="btn" data-act="edit-coins" data-id="${pl.id}">ویرایش سکه</button><button class="btn gold" data-act="add-event" data-id="${pl.id}">ثبت اتفاق</button><button class="btn red" data-act="delete-owned" data-id="${pl.id}">حذف</button></div><div class="statGrid">${STAT_DEFS.map(s=>`<div class="mini"><b>${s.fa}</b><div class="statValue">${pl.stats[s.key]}</div><div class="bar"><span style="width:${pl.stats[s.key]/19*100}%"></span></div></div>`).join('')}</div><div class="mini" style="margin-top:10px"><div class="rowline"><span>گل معمولی برای شتاب</span><b>${pl.c.goalAccel}/${th.goalAccel}</b></div><div class="rowline"><span>گل برای سرعت</span><b>${pl.c.goalSpeed}/${th.goalSpeed}</b></div><div class="rowline"><span>پشت هجده</span><b>${pl.c.outside}/${th.outside}</b></div><div class="rowline"><span>ایستگاهی</span><b>${pl.c.freeKick}/${th.freeKick}</b></div><div class="rowline"><span>دریبل</span><b>${pl.c.dribble}/${th.dribble}</b></div><div class="rowline"><span>هد</span><b>${pl.c.header}/${th.header}</b></div><div class="rowline"><span>پاس گل</span><b>${pl.c.assist}/${th.assist}</b></div></div>`)}
+function renderMarket(){const pr=activeProfile(),q=state.ui.marketQuery.trim().toLowerCase(),rows=pr.market.filter(x=>!q||x.name.toLowerCase().includes(q)||x.club.toLowerCase().includes(q));document.getElementById('content').innerHTML=`<div class="grid"><div class="card s12"><div class="title"><div><h2>بازار بازیکنان</h2><span class="profileBadge">این لیست کاملاً جدا از «بازیکنان خودمان» است.</span></div><div class="actions"><button class="btn green" data-act="add-market">+ افزودن بازیکن بازار</button></div></div><input id="marketSearch" class="search" placeholder="جستجوی نام یا باشگاه" value="${esc(state.ui.marketQuery)}"></div><div class="card s12">${rows.length?`<div class="tableWrap"><table class="table"><thead><tr><th>بازیکن</th><th>پست</th><th>باشگاه</th><th>سرعت</th><th>قدرت شوت</th><th>قیمت</th><th>عملیات</th></tr></thead><tbody>${rows.map(m=>`<tr><td><b>${esc(m.name)}</b></td><td>${m.position}</td><td>${esc(m.club||'—')}</td><td>${m.stats.speed}</td><td>${m.stats.shotPower}</td><td class="money">${buyPrice(m)}</td><td><div class="actions"><button class="btn gold" data-act="buy" data-id="${m.id}">خرید</button><button class="btn" data-act="edit-market" data-id="${m.id}">ویرایش</button><button class="btn red" data-act="delete-market" data-id="${m.id}">حذف</button></div></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">بازار خالی است. با «افزودن بازیکن بازار» بازیکن مستقل بساز.</div>'}</div><div class="card s12"><div class="notice">هر خرید یک کپی مستقل به <b>انتهای لیست بازیکنان خودمان</b> اضافه می‌کند. حذف آن کپی، رکورد بازار را حذف نمی‌کند.</div></div></div>`;document.getElementById('marketSearch').oninput=e=>{state.ui.marketQuery=e.target.value;renderMarket()}}
+function renderMatches(){const pr=activeProfile();const side=(name,type)=>type==='computer'?`کامپیوتر · ${esc(name||'کامپیوتر')}`:esc(name||'بازیکن');document.getElementById('content').innerHTML=`<div class="title"><h2>تاریخچه بازی‌ها</h2><button class="btn gold" data-act="add-match">+ ثبت بازی</button></div>${pr.matches.slice().reverse().map(m=>`<div class="historyItem"><div class="title"><b>${side(m.teamAName||m.teamA,m.teamAType)} ${m.scoreA} - ${m.scoreB} ${side(m.teamBName||m.teamB,m.teamBType)}</b><span class="small muted">${esc(m.date||'')}</span></div><div class="small muted">${m.winnerId?`برنده: ${esc(getPlayerName(m.winnerId))}`:'مساوی'} · پاداش ${num(m.rewardA,0)} / ${num(m.rewardB,0)} سکه</div><div class="actions" style="margin-top:7px"><button class="btn red" data-act="delete-match" data-id="${m.id}">حذف بازی</button></div></div>`).join('')||'<div class="empty">هنوز بازی ثبت نشده.</div>'}`}
+function awardPayouts(a){
+ const pr=activeProfile(),s={saeed:computedAwardStats(a,'saeed'),behzad:computedAwardStats(a,'behzad')},out={saeed:0,behzad:0};
+ a.enabled.forEach(key=>{const o=awardOption(key);if(!o)return;const prize=pr.rules.prizes.find(x=>x.key===key);const amount=num(prize?.amount,0);if(key==='champion'){if(a.champion==='saeed')out.saeed+=amount;else if(a.champion==='behzad')out.behzad+=amount;return;}
+  const v1=num(s.saeed[o.metric],0),v2=num(s.behzad[o.metric],0);
+  let winner=null;
+  if(o.metric==='goalDiff'){const g1=num(s.saeed.goalDiffGoals,0),g2=num(s.behzad.goalDiffGoals,0);if(v1>v2||(v1===v2&&g1>g2))winner='saeed';else if(v2>v1||(v1===v2&&g2>g1))winner='behzad';}
+  else if(v1>v2)winner='saeed';else if(v2>v1)winner='behzad';
+  if(winner)out[winner]+=amount;
+ });
+ return out;
+}
+
+function renderAwards(){
+ const pr=activeProfile(),a=pr.awards||blankAwards(),r=pr.rules;refreshAwardStats(a);
+ const names={saeed:a.names.saeed,behzad:a.names.behzad};
+ const enabled=a.enabled.map(k=>awardOption(k)).filter(Boolean);
+ const ss={saeed:computedAwardStats(a,'saeed'),behzad:computedAwardStats(a,'behzad')};
+ const statRows=enabled.map(o=>{
+  if(o.key==='champion'){
+   const prize=r.prizes.find(x=>x.key==='champion');
+   return `<tr><td>${esc(prize?.name||o.name)}</td><td>${esc(a.champion?names[a.champion]:'—')}</td><td>—</td><td class="money">${num(prize?.amount,0).toLocaleString()} تومان</td></tr>`;
+  }
+  const v1=num(ss.saeed[o.metric],0),v2=num(ss.behzad[o.metric],0);
+  const prize=r.prizes.find(x=>x.key===o.key);
+  if(o.metric==='goalDiff'){
+   const g1=num(ss.saeed.goalDiffGoals,0),g2=num(ss.behzad.goalDiffGoals,0);
+   let leaders=[];
+   if(v1>v2 || (v1===v2&&g1>g2))leaders=[names.saeed];
+   else if(v2>v1 || (v1===v2&&g2>g1))leaders=[names.behzad];
+   else if(v1!==0||v2!==0||g1!==0||g2!==0)leaders=[names.saeed,names.behzad];
+   const record1=`${v1>0?'+':''}${v1} در یک بازی، ${g1} گل زده`;
+   const record2=`${v2>0?'+':''}${v2} در یک بازی، ${g2} گل زده`;
+   return `<tr><td>${esc(prize?.name||o.name)}</td><td>${esc(leaders.join('، ')||'—')}</td><td>${esc(names.saeed)}: ${esc(record1)} · ${esc(names.behzad)}: ${esc(record2)}</td><td class="money">${num(prize?.amount,0).toLocaleString()} تومان</td></tr>`;
+  }
+  const best=Math.max(v1,v2);const leaders=best>0?[v1===best?names.saeed:null,v2===best?names.behzad:null].filter(Boolean):[];
+  return `<tr><td>${esc(prize?.name||o.name)}</td><td>${esc(leaders.join('، ')||'—')}</td><td>${best}</td><td class="money">${num(prize?.amount,0).toLocaleString()} تومان</td></tr>`;
+ }).join('');
+ const history=a.history.slice().reverse().map(h=>`<div class="historyItem"><div class="title"><b>${esc(h.playerName||h.who)}</b><span class="badge">${esc(h.name)} · تفاضل این بازی: ${num(h.diff,0)>0?'+':''}${num(h.diff,0)}</span></div><div class="small muted">نتیجه: ${h.goalsFor}-${h.goalsAgainst} · گل: ${h.goalsFor} · پاس گل: ${h.assists} · پشت هجده: ${h.outside} · ایستگاهی: ${h.freeKick} · هد: ${h.headers} · دریبل: ${h.dribbles} · ${h.win?'برد':'بدون برد'} · ${esc(h.when||'')}</div><div class="actions" style="margin-top:7px"><button class="btn red" data-act="award-delete-match" data-id="${h.id}">حذف این بازی</button></div></div>`).join('');
+ const final=a.finalSnapshot;
+ const finalBox=final?`<div class="success"><b>نتیجه نهایی ثبت‌شده — ${esc(final.when)}</b><div class="tableWrap" style="margin-top:8px"><table class="table"><thead><tr><th>جایزه</th><th>برنده</th><th>مبلغ جایزه</th><th>${esc(names.saeed)}</th><th>${esc(names.behzad)}</th></tr></thead><tbody>${final.results.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.winner==='tie'?'مساوی':x.winner?(x.winner==='saeed'?names.saeed:names.behzad):'مشخص نشده')}</td><td class="money">${num(x.amount,0).toLocaleString()} تومان</td><td class="money">${num(x.saeedPayout,0).toLocaleString()} تومان</td><td class="money">${num(x.behzadPayout,0).toLocaleString()} تومان</td></tr>`).join('')}</tbody></table></div><div class="split" style="margin-top:10px"><div class="mini"><b>${esc(names.saeed)} می‌برد</b><div class="kpi goldText">${final.results.reduce((t,x)=>t+num(x.saeedPayout,0),0).toLocaleString()} تومان</div></div><div class="mini"><b>${esc(names.behzad)} می‌برد</b><div class="kpi goldText">${final.results.reduce((t,x)=>t+num(x.behzadPayout,0),0).toLocaleString()} تومان</div></div></div><div class="small muted" style="margin-top:5px">بعد از ثبت بازی جدید، نتیجه نهایی خودکار از حالت نهایی خارج می‌شود و دوباره باید محاسبه شود.</div></div>`:'<div class="notice">هنوز نتیجه نهایی ثبت نشده. بعد از تمام شدن رقابت، «محاسبه نتیجه نهایی» را بزن.</div>';
+ document.getElementById('content').innerHTML=`<div class="grid">
+  <div class="card s12"><div class="title"><div><h2>جوایز — رقابت مستقل</h2><div class="muted small">این بخش هیچ ارتباطی با بازیکنان، Stats، بازار یا بازی‌های ثبت‌شدهٔ اصلی ندارد. هر بازی جدا ثبت می‌شود و در پایان، هر جایزه طبق قانون خودش برنده می‌گیرد.</div></div><div class="actions"><button class="btn gold" data-act="edit-awards">تنظیم جوایز</button><button class="btn green" data-act="award-match">+ ثبت عملکرد یک بازی</button><button class="btn" data-act="award-champion">قهرمان</button><button class="btn primary" data-act="award-finalize">محاسبه نتیجه نهایی</button></div></div></div>
+  <div class="card s6"><div class="title"><h2>${esc(names.saeed)}</h2><button class="btn" data-act="award-edit-stats" data-who="saeed">اصلاح آمار</button></div><div class="statGrid"><div class="mini"><b>گل</b><div class="statValue">${ss.saeed.goals}</div></div><div class="mini"><b>پاس گل</b><div class="statValue">${ss.saeed.assists}</div></div><div class="mini"><b>برد</b><div class="statValue">${ss.saeed.wins}</div></div><div class="mini"><b>پشت هجده</b><div class="statValue">${ss.saeed.outside}</div></div><div class="mini"><b>ایستگاهی</b><div class="statValue">${ss.saeed.freeKick}</div></div><div class="mini"><b>هد</b><div class="statValue">${ss.saeed.headers}</div></div><div class="mini"><b>دریبل</b><div class="statValue">${ss.saeed.dribbles}</div></div><div class="mini"><b>بهترین تفاضل</b><div class="statValue">${ss.saeed.goalDiff}</div></div><div class="mini"><b>بازی</b><div class="statValue">${ss.saeed.matches}</div></div></div></div>
+  <div class="card s6"><div class="title"><h2>${esc(names.behzad)}</h2><button class="btn" data-act="award-edit-stats" data-who="behzad">اصلاح آمار</button></div><div class="statGrid"><div class="mini"><b>گل</b><div class="statValue">${ss.behzad.goals}</div></div><div class="mini"><b>پاس گل</b><div class="statValue">${ss.behzad.assists}</div></div><div class="mini"><b>برد</b><div class="statValue">${ss.behzad.wins}</div></div><div class="mini"><b>پشت هجده</b><div class="statValue">${ss.behzad.outside}</div></div><div class="mini"><b>ایستگاهی</b><div class="statValue">${ss.behzad.freeKick}</div></div><div class="mini"><b>هد</b><div class="statValue">${ss.behzad.headers}</div></div><div class="mini"><b>دریبل</b><div class="statValue">${ss.behzad.dribbles}</div></div><div class="mini"><b>بهترین تفاضل</b><div class="statValue">${ss.behzad.goalDiff}</div></div><div class="mini"><b>بازی</b><div class="statValue">${ss.behzad.matches}</div></div></div></div>
+  <div class="card s8"><div class="title"><h2>جدول نهایی جوایز</h2><span class="tag">تفاضل: بهترین رکورد یک بازی</span></div><div class="tableWrap"><table class="table"><thead><tr><th>جایزه</th><th>برنده</th><th>رکورد</th><th>مبلغ</th></tr></thead><tbody>${statRows||'<tr><td colspan="4">هیچ جایزه‌ای فعال نیست.</td></tr>'}</tbody></table></div></div>
+  <div class="card s4"><div class="title"><h2>مبلغ نهایی</h2></div><div class="rowline"><span>${esc(names.saeed)}</span><b>${awardPayouts(a).saeed.toLocaleString()} تومان</b></div><div class="rowline"><span>${esc(names.behzad)}</span><b>${awardPayouts(a).behzad.toLocaleString()} تومان</b></div><div class="small muted" style="margin-top:8px">هر جایزه فقط به برندهٔ نهایی همان جایزه تعلق می‌گیرد. جایزهٔ مساوی بین دو نفر تقسیم نمی‌شود.</div></div>
+  <div class="card s12"><div class="title"><h2>جمع مبلغ جوایز</h2><span class="tag">محاسبه بر اساس برنده‌های فعلی</span></div><div class="split"><div class="mini"><b>${esc(names.saeed)}</b><div class="kpi goldText">${awardPayouts(a).saeed.toLocaleString()} تومان</div></div><div class="mini"><b>${esc(names.behzad)}</b><div class="kpi goldText">${awardPayouts(a).behzad.toLocaleString()} تومان</div></div></div></div>
+  <div class="card s12">${finalBox}</div>
+  <div class="card s12"><div class="title"><h2>سوابق بازی‌های بخش جوایز</h2><span class="small muted">هر بازی یک رکورد مستقل</span></div>${history||'<div class="empty">هنوز عملکردی برای بخش جوایز ثبت نشده.</div>'}</div>
+ </div>`;
+}
+
+function renderDraft(){const d=activeProfile().draft;document.getElementById('content').innerHTML=`<div class="grid"><div class="card s6"><div class="title"><h2>تیم‌های من</h2><span class="tag">${d.myTeams.length} تیم</span></div><div class="field"><label>نام من</label><input id="draftMyName" value="${esc(d.myName||'من')}"></div><textarea id="draftMyTeams" placeholder="هر خط یک تیم">${esc(d.myTeams.join('\n'))}</textarea><div class="actions" style="margin-top:8px"><button class="btn primary" data-act="save-my-teams">ذخیره لیست من</button><button class="btn gold" data-act="draw-my-team">🎲 قرعه برای من</button><button class="btn red" data-act="clear-my-teams">پاک کردن</button></div></div><div class="card s6"><div class="title"><h2>تیم‌های دوستم</h2><span class="tag">${d.friendTeams.length} تیم</span></div><div class="field"><label>نام دوست</label><input id="draftFriendName" value="${esc(d.friendName||'دوستم')}"></div><textarea id="draftFriendTeams" placeholder="هر خط یک تیم">${esc(d.friendTeams.join('\n'))}</textarea><div class="actions" style="margin-top:8px"><button class="btn primary" data-act="save-friend-teams">ذخیره لیست دوست</button><button class="btn gold" data-act="draw-friend-team">🎲 قرعه برای دوستم</button><button class="btn red" data-act="clear-friend-teams">پاک کردن</button></div></div><div class="card s12"><div class="notice"><b>دو قرعهٔ مستقل:</b> قرعه برای شما فقط از لیست شما انتخاب می‌کند و قرعه برای دوستتان فقط از لیست او. هیچ محدودیت مصنوعی بین دو لیست وجود ندارد.</div><div class="split" style="margin-top:10px"><div class="mini"><b>تیم انتخاب‌شده برای من</b><div class="kpi goldText">${d.myResult?esc(d.myResult.team):'—'}</div><div class="small muted">${d.myResult?esc(d.myResult.when):'هنوز قرعه نشده'}</div></div><div class="mini"><b>تیم انتخاب‌شده برای دوستم</b><div class="kpi goldText">${d.friendResult?esc(d.friendResult.team):'—'}</div><div class="small muted">${d.friendResult?esc(d.friendResult.when):'هنوز قرعه نشده'}</div></div></div></div><div class="card s12"><h2 style="font-size:16px">سوابق قرعه من</h2>${d.myHistory.slice().reverse().slice(0,20).map(h=>`<div class="historyItem"><b>${esc(h.when)}</b><div class="small muted">${esc(h.participant)} ← ${esc(h.team)}</div></div>`).join('')||'<div class="empty">هنوز قرعه‌ای ثبت نشده.</div>'}</div><div class="card s12"><h2 style="font-size:16px">سوابق قرعه دوستم</h2>${d.friendHistory.slice().reverse().slice(0,20).map(h=>`<div class="historyItem"><b>${esc(h.when)}</b><div class="small muted">${esc(h.participant)} ← ${esc(h.team)}</div></div>`).join('')||'<div class="empty">هنوز قرعه‌ای ثبت نشده.</div>'}</div></div>`}
+
+function randomInt(max){if(max<=0)return 0;if(window.crypto?.getRandomValues){const a=new Uint32Array(1);window.crypto.getRandomValues(a);return a[0]%max}return Math.floor(Math.random()*max)}
+function shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=randomInt(i+1);[x[i],x[j]]=[x[j],x[i]]}return x}
+function parseTeamList(value){return [...new Set(String(value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean))]}
+function saveDraftMyTeams(){const d=activeProfile().draft;d.myName=(document.getElementById('draftMyName').value||'من').trim()||'من';d.myTeams=parseTeamList(document.getElementById('draftMyTeams').value);d.teams=d.myTeams.slice();d.myResult=null;updateAndRender('لیست تیم‌های من ذخیره شد')}
+function saveDraftFriendTeams(){const d=activeProfile().draft;d.friendName=(document.getElementById('draftFriendName').value||'دوستم').trim()||'دوستم';d.friendTeams=parseTeamList(document.getElementById('draftFriendTeams').value);d.friendResult=null;updateAndRender('لیست تیم‌های دوست ذخیره شد')}
+function drawForOwner(owner){const d=activeProfile().draft,list=owner==='me'?d.myTeams:d.friendTeams,name=owner==='me'?d.myName:d.friendName;if(!list.length){flash(owner==='me'?'لیست تیم‌های من خالی است':'لیست تیم‌های دوست خالی است','error');return}const team=shuffle(list)[0],result={participant:name,team,time:new Date().toLocaleTimeString('fa-IR'),when:new Date().toLocaleString('fa-IR')};if(owner==='me'){d.myResult=result;d.myHistory.push(clone(result))}else{d.friendResult=result;d.friendHistory.push(clone(result))}updateAndRender(owner==='me'?'تیم برای من قرعه‌کشی شد':'تیم برای دوستم قرعه‌کشی شد')}
+function clearDraftMyTeams(){const d=activeProfile().draft;d.myTeams=[];d.myResult=null;d.teams=[];updateAndRender('لیست تیم‌های من پاک شد')}
+function clearDraftFriendTeams(){const d=activeProfile().draft;d.friendTeams=[];d.friendResult=null;updateAndRender('لیست تیم‌های دوست پاک شد')}
+function saveDraftTeams(){saveDraftMyTeams()}
+function saveDraftParticipants(){return}
+function drawTeams(){drawForOwner('me')}
+
+function renderProfiles(){const st=state;document.getElementById('content').innerHTML=`<div class="grid"><div class="card s12"><div class="title"><h2>نسخه‌ها / پچ‌ها</h2><button class="btn primary" data-act="add-profile">+ نسخه جدید</button></div><div class="notice">هر نسخه دیتای کاملاً جدا دارد: بازیکنان خودمان، بازار، سکه، بازی‌ها، جوایز و قرعه‌کشی. مثال: <b>WE2002 اصلی</b>، <b>پچ 2004</b>، <b>پچ 2005</b>.</div></div>${st.profiles.map(p=>`<div class="card s4"><div class="title"><h2>${esc(p.name)}</h2>${p.id===st.activeProfileId?'<span class="tag">فعال</span>':''}</div><div class="small muted">${p.players.length} بازیکن خودمان · ${p.market.length} بازار · ${p.matches.length} بازی</div><div class="actions" style="margin-top:10px"><button class="btn ${p.id===st.activeProfileId?'primary':''}" data-act="activate-profile" data-id="${p.id}" ${p.id===st.activeProfileId?'disabled':''}>فعال‌سازی</button><button class="btn" data-act="rename-profile" data-id="${p.id}">تغییر نام</button>${st.profiles.length>1?`<button class="btn red" data-act="delete-profile" data-id="${p.id}">حذف</button>`:''}</div></div>`).join('')}</div>`}
+function addProfile(){openModal(`<div class="title"><h2>ساخت نسخه / پچ جدید</h2><button class="btn" data-close>بستن</button></div><form id="profileForm" class="form"><div class="field f12"><label>نام نسخه</label><input id="profileName" required placeholder="مثلاً WE2002 پچ 2004"></div><div class="field f12"><button class="btn primary">ساخت و فعال‌سازی</button></div></form>`);document.getElementById('profileForm').onsubmit=e=>{e.preventDefault();const p=newProfile(document.getElementById('profileName').value.trim()||'نسخه جدید');state.profiles.push(p);state.activeProfileId=p.id;closeModal();updateAndRender('نسخه جدید ساخته شد')}}
+function activateProfile(id){if(state.profiles.some(p=>p.id===id)){state.activeProfileId=id;state.ui.query='';state.ui.marketQuery='';updateAndRender('نسخه فعال تغییر کرد')}}
+function renameProfile(id){const p=state.profiles.find(x=>x.id===id);if(!p)return;const v=prompt('نام جدید نسخه را وارد کن:',p.name);if(v===null)return;p.name=v.trim()||p.name;updateAndRender('نام نسخه تغییر کرد')}
+function deleteProfile(id){if(state.profiles.length<=1){flash('آخرین نسخه را نمی‌شود حذف کرد','error');return}const p=state.profiles.find(x=>x.id===id);if(!p)return;if(!confirm(`نسخه «${p.name}» و تمام اطلاعاتش حذف شود؟`))return;state.profiles=state.profiles.filter(x=>x.id!==id);if(state.activeProfileId===id)state.activeProfileId=state.profiles[0].id;updateAndRender('نسخه حذف شد')}
+
+function exportJSON(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='WE2002-Cup-Manager-Backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);flash('پشتیبان JSON آماده شد')}
+function importJSONFile(file){const r=new FileReader();r.onload=()=>{try{const imported=normalizeState(JSON.parse(r.result));if(!confirm('پشتیبان جایگزین اطلاعات فعلی شود؟'))return;state=imported;saveState();render();flash('پشتیبان بازیابی شد')}catch(e){flash('فایل پشتیبان معتبر نیست','error')}};r.readAsText(file)}
+function resetActiveProfile(){const p=activeProfile();if(!confirm(`تمام اطلاعات نسخه «${p.name}» پاک شود؟ این کار برگشت‌پذیر نیست مگر با JSON.`))return;const fresh=newProfile(p.name);fresh.id=p.id;state.profiles=state.profiles.map(x=>x.id===p.id?fresh:x);saveState();render();flash('نسخه فعال از صفر شد')}
+
+function renderSettings(){const pr=activeProfile(),r=pr.rules;document.getElementById('content').innerHTML=`<div class="grid"><div class="card s8"><div class="title"><h2>تنظیمات نسخه فعال</h2><span class="tag">${esc(pr.name)}</span></div><div class="actions"><button class="btn primary" data-act="edit-rules">ویرایش قوانین و حدنصاب‌ها</button><button class="btn gold" data-act="edit-awards">ویرایش جوایز</button><button class="btn" data-act="export">پشتیبان JSON</button><label class="btn">بازیابی JSON<input id="importFile" type="file" accept=".json,application/json" hidden></label><button class="btn red" data-act="reset-profile">پاک کردن نسخه فعال</button></div><div class="notice" style="margin-top:10px">ذخیره اصلی برنامه در مرورگر و در <b>localStorage</b> انجام می‌شود. برای مسابقات حساس، بعد از هر جلسه یک JSON پشتیبان بگیر.</div><div class="success" style="margin-top:8px">منطق حدنصاب: شمارنده پس از رسیدن به حدنصاب از مقدار حدنصاب کم می‌شود و باقی‌مانده حفظ می‌شود؛ بنابراین ۱۰ گل با حدنصاب ۵ = دو افزایش و شمارنده ۰، و ۱۲ گل = دو افزایش و ۲ باقی‌مانده.</div></div><div class="card s4"><h2 style="font-size:16px">وضعیت نسخه</h2><div class="rowline"><span>بازیکنان خودمان</span><b>${pr.players.length}</b></div><div class="rowline"><span>بازار</span><b>${pr.market.length}</b></div><div class="rowline"><span>بازی‌ها</span><b>${pr.matches.length}</b></div><div class="rowline"><span>کل جوایز</span><b>${totalPrizes().toLocaleString()}</b></div><div class="rowline"><span>بودجه باقی‌مانده</span><b>${currentPrizeBudget().toLocaleString()}</b></div></div></div>`;document.getElementById('importFile').onchange=e=>{if(e.target.files?.[0])importJSONFile(e.target.files[0]);e.target.value=''}}
+
+function render(){const pr=activeProfile();document.getElementById('profileNameTop').textContent=pr.name;document.getElementById('tabs').innerHTML=TABS.map(([id,n])=>`<button class="tab ${state.ui.tab===id?'active':''}" data-tab="${id}">${n}</button>`).join('');const fn={home:renderHome,players:renderPlayers,market:renderMarket,matches:renderMatches,awards:renderAwards,draft:renderDraft,profiles:renderProfiles,settings:renderSettings}[state.ui.tab]||renderHome;fn()}
+
+function handleClick(e){const tab=e.target.closest('[data-tab]');if(tab){state.ui.tab=tab.dataset.tab;state.ui.query='';state.ui.marketQuery='';render();return}const close=e.target.closest('[data-close]');if(close){closeModal();return}const el=e.target.closest('[data-act]');if(!el)return;const act=el.dataset.act,id=el.dataset.id;
+ if(act==='add-owned')openOwnedPlayerModal();
+ else if(act==='view-player')renderPlayerProfile(id);
+ else if(act==='edit-owned'){closeModal();openOwnedPlayerModal(id)}
+ else if(act==='edit-coins'){closeModal();editCoins(id)}
+ else if(act==='add-event'){closeModal();openEventModal(id)}
+ else if(act==='delete-owned'){closeModal();confirmDeleteOwned(id)}
+ else if(act==='add-market')openMarketPlayerModal();
+ else if(act==='buy')openBuyModal(id);
+ else if(act==='edit-market')openMarketPlayerModal(id);
+ else if(act==='delete-market')confirmDeleteMarket(id);
+ else if(act==='add-match')openMatchModal();
+ else if(act==='delete-match')deleteMatch(id);
+ else if(act==='edit-awards')openAwardsEdit();
+ else if(act==='award-match')openAwardMatch();
+ else if(act==='award-champion')setChampion();
+ else if(act==='award-finalize')finalizeAwards();
+ else if(act==='award-delete-match')deleteAwardMatch(id);
+ else if(act==='award-edit-stats')editAwardStats(el.dataset.who);
+ else if(act==='edit-rules')openRulesEdit();
+ else if(act==='add-profile')addProfile();
+ else if(act==='activate-profile')activateProfile(id);
+ else if(act==='rename-profile')renameProfile(id);
+ else if(act==='delete-profile')deleteProfile(id);
+ else if(act==='save-my-teams')saveDraftMyTeams();
+ else if(act==='save-friend-teams')saveDraftFriendTeams();
+ else if(act==='draw-my-team')drawForOwner('me');
+ else if(act==='draw-friend-team')drawForOwner('friend');
+ else if(act==='reset-draft'){const d=activeProfile().draft;d.myResult=null;d.friendResult=null;updateAndRender('نتایج قرعه پاک شد')}
+ else if(act==='clear-my-teams')clearDraftMyTeams();
+ else if(act==='clear-friend-teams')clearDraftFriendTeams();
+ else if(act==='export')exportJSON();
+ else if(act==='reset-profile')resetActiveProfile();
+}
+function init(){document.addEventListener('click',handleClick);document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});render()}
+
+window.WE2002={
+ STAT_DEFS,DEFAULT_RULES,blankStats,blankCounters,newPlayer,newMarketPlayer,newProfile,blankState,normalizeState,recordPlayerEventOnProfile,purchaseMarketPlayer,buyPrice,shuffle,
+ test:()=>({stats:STAT_DEFS.length,version:state.version,profiles:state.profiles.length})
+};
+
+init();
+</script></body></html>
